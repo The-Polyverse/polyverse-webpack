@@ -1,3 +1,9 @@
+```bash
+npm install -g yarn@berry
+yarn set version berry
+yarn install
+```
+
 # Enter the Polyverse
 
 ### **Dynamic Dashboard Service**
