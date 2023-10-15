@@ -3,7 +3,7 @@ import { Configuration } from 'webpack';
 
 const config: Configuration = {
   entry: {
-    index: path.resolve(__dirname, 'src', 'index.ts'),
+    index: './src/index.tsx',
   },
   target: 'node', // in order to ignore built-in modules like path, fs, etc.
   mode: 'development',
