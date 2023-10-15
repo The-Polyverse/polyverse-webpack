@@ -3,10 +3,18 @@
   "license": "GPL-3.0",
   "version": "1.0.0",
   "description": "A flexible, interconnected, and self-validating dashboard system. ",
-  "main": "index.js",
+  "private": true,
   "repository": "https://github.com/hazah/polyverse",
   "author": "Ivgeni Slabkovski <ivgenis@gmail.com>",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
   "devDependencies": {
-    "@storybook/cli": "^7.4.6"
+    "@storybook/cli": "^7.4.6",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.2.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   }
 }
