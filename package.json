@@ -1,0 +1,9 @@
+{
+  "name": "dashboard",
+  "license": "GPL-3.0",
+  "version": "1.0.0",
+  "description": "A flexible, interconnected, and self-validating dashboard system. ",
+  "main": "index.js",
+  "repository": "https://github.com/hazah/polyverse",
+  "author": "Ivgeni <ivgenis@gmail.com>"
+}
