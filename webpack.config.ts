@@ -1,5 +1,7 @@
 import path from 'path';
 import { Configuration } from 'webpack';
+import 'webpack-dev-server';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const client = (env: any, argv: any): Configuration => ({
   name: 'client',
@@ -8,6 +10,23 @@ const client = (env: any, argv: any): Configuration => ({
   },
   target: 'web', // in order to ignore built-in modules like path, fs, etc.
   mode: 'development',
+  devtool: 'inline-source-map',
+  devServer: {
+    static: './dist',
+    hot: true,
+    client: {
+      webSocketURL: {
+        pathname: '/ws',
+        port: 443,
+      },
+    },
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Development',
+      template: './dev/index.html',
+    }),
+  ],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
