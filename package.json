@@ -11,7 +11,9 @@
     "test": "jest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build:client:dev": "webpack --config-name client"
+    "build:client:dev": "webpack --config-name client",
+    "build:server:dev": "webpack --config-name server",
+    "start:server:dev": "node dist/server.js"
   },
   "keywords": [],
   "devDependencies": {
