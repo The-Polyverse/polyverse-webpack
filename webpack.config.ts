@@ -1,5 +1,6 @@
 import path from 'path';
-import { Configuration } from 'webpack';
+import { Configuration, HotModuleReplacementPlugin } from 'webpack';
+import nodeExternals from 'webpack-node-externals';
 import 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
@@ -47,9 +48,9 @@ const client = (env: any, argv: any): Configuration => ({
 
 const server: (env: any, argv: any) => Configuration = (env, argv) => ({
   name: 'server',
-  entry: {
-    index: './src/server/index.tsx',
-  },
+  entry: [
+    './src/server/index.tsx', 'webpack/hot/poll?1000'
+  ],
   target: 'node', // in order to ignore built-in modules like path, fs, etc.
   mode: 'development',
   output: {
@@ -59,6 +60,7 @@ const server: (env: any, argv: any) => Configuration = (env, argv) => ({
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
+  externals: [nodeExternals({ allowlist: ['webpack/hot/poll?1000'] })],
   module: {
     rules: [
       {
@@ -68,6 +70,9 @@ const server: (env: any, argv: any) => Configuration = (env, argv) => ({
       },
     ],
   },
+  plugins: [
+    new HotModuleReplacementPlugin(),
+  ],
 });
 
 export default [client, server];
