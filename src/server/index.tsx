@@ -6,7 +6,7 @@ console.log("Hello World!");
 const server = express();
 let handler: any = app;
 
-server.get("/", (req, res) => {
+server.use((req, res) => {
   handler.handle(req, res);
 });
 
