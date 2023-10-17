@@ -12,6 +12,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build:client:dev": "webpack --config-name client",
+    "watch:client:dev": "yarn build:client:dev --watch",
     "start:client:dev": "webpack serve --config-name client",
     "build:server:dev": "webpack --config-name server",
     "watch:server:dev": "yarn build:server:dev --watch",
