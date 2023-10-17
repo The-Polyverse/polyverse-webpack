@@ -9,9 +9,9 @@
   "author": "Ivgeni Slabkovski <ivgenis@gmail.com>",
   "scripts": {
     "test": "jest",
+    "test:storybook": "test-storybook",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test-storybook": "test-storybook",
     "build:client:dev": "webpack --config-name client",
     "watch:client:dev": "yarn build:client:dev --watch",
     "start:client:dev": "webpack serve --config-name client",
