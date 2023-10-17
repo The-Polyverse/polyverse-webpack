@@ -8,8 +8,7 @@
   "repository": "https://github.com/hazah/polyverse",
   "author": "Ivgeni Slabkovski <ivgenis@gmail.com>",
   "scripts": {
-    "test:client": "jest --config jest.client.config.ts",
-    "test:server": "jest --config jest.server.config.ts",
+    "test": "jest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "build:client:dev": "webpack --config-name client",
