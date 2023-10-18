@@ -1,5 +1,4 @@
 ```bash
-npm install -g yarn@berry
 yarn set version berry
 yarn install
 ```
