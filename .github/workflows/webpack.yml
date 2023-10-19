@@ -28,5 +28,6 @@ jobs:
         yarn install
         yarn build-storybook --quiet
         yarn test
-        npx run-p npx http-server storybook-static --port 6006 --silent npx wait-on tcp:6006 && yarn test-storybook
-        
+        npx http-server storybook-static --port 6006 --silent & # Start the server in the background
+        npx wait-on tcp:6006 # Wait for the server to start
+        yarn test-storybook
