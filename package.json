@@ -11,7 +11,7 @@
     "test": "jest",
     "test:storybook": "test-storybook",
     "storybook": "storybook dev -p 6006",
-    "test:storybook:ci": "run-p storybook test:storybook"
+    "test:storybook:ci": "run-p storybook test:storybook",
     "build-storybook": "storybook build",
     "build:client:dev": "webpack --config-name client",
     "watch:client:dev": "yarn build:client:dev --watch",
