@@ -26,5 +26,8 @@ jobs:
       run: |
         yarn set version berry
         yarn install
+        yarn build-storybook --quiet
+        npx http-server storybook-static --port 6006 --silent
         yarn test
-        yarn test:storybook:ci
+        npx wait-on tcp:6006 && yarn test-storybook
+        
