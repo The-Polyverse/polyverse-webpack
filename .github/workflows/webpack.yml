@@ -26,5 +26,5 @@ jobs:
       run: |
         yarn set version berry
         yarn install
-        yarn run test
-        yarn run test:storybook:ci
+        yarn test
+        yarn test:storybook:ci
