@@ -27,3 +27,4 @@ jobs:
         yarn set version berry
         yarn install
         yarn run test
+        npx run-p storybook test:storybook
