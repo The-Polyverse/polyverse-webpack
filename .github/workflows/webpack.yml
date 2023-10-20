@@ -24,7 +24,11 @@ jobs:
 
     - name: Build
       run: |
-        npm install -g yarn@berry
         yarn set version berry
         yarn install
-        npx webpack
+        npx playwright install --with-deps
+        yarn build-storybook --quiet
+        yarn test
+        npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+          "npx http-server storybook-static --port 6006 --silent" \
+          "npx wait-on tcp:6006 && yarn test-storybook"

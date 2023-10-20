@@ -1,3 +1,10 @@
+```bash
+yarn set version berry
+yarn install
+```
+
+https://the-polyverse.github.io/
+
 # Enter the Polyverse
 
 ### **Dynamic Dashboard Service**
