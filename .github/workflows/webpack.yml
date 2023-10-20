@@ -26,8 +26,9 @@ jobs:
       run: |
         yarn set version berry
         yarn install
+        npx playwright install --with-deps
         yarn build-storybook --quiet
         yarn test
-        npx http-server storybook-static --port 6006 --silent & # Start the server in the background
-        npx wait-on tcp:6006 # Wait for the server to start
-        yarn test-storybook
+        npx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+          "npx http-server storybook-static --port 6006 --silent" \
+          "npx wait-on tcp:6006 && yarn test-storybook"
