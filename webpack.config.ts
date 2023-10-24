@@ -3,6 +3,7 @@ import { Configuration, HotModuleReplacementPlugin } from 'webpack';
 import nodeExternals from 'webpack-node-externals';
 import 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 
 const client = (env: any, argv: any): Configuration => ({
   name: 'client',
@@ -36,6 +37,7 @@ const client = (env: any, argv: any): Configuration => ({
       title: 'Development',
       template: './dev/index.html',
     }),
+    new Dotenv(),
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -82,6 +84,7 @@ const server: (env: any, argv: any) => Configuration = (env, argv) => ({
   },
   plugins: [
     new HotModuleReplacementPlugin(),
+    new Dotenv(),
   ],
 });
 
