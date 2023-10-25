@@ -21,12 +21,12 @@ const client = (env: any, argv: any): Configuration => ({
     },
     hot: true,
     client: {
-      webSocketURL: {
-        pathname: '/ws',
-        port: 443,
-        hostname: `${process.env.CODESPACE_NAME}-8080.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`,
-        protocol: 'wss:',
-      },
+      // webSocketURL: {
+      //   pathname: '/ws',
+      //   port: 443,
+      //   hostname: `${process.env.CODESPACE_NAME}-8080.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}`,
+      //   protocol: 'wss:',
+      // },
     },
     headers: {
       "Access-Control-Allow-Origin": "*",
@@ -42,7 +42,7 @@ const client = (env: any, argv: any): Configuration => ({
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    publicPath: `https://${process.env.CODESPACE_NAME}-8080.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/`
+    // publicPath: `https://${process.env.CODESPACE_NAME}-8080.${process.env.GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}/`
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
@@ -53,6 +53,10 @@ const client = (env: any, argv: any): Configuration => ({
         test: /\.tsx?$/,
         loader: 'ts-loader',
         exclude: [/node_modules/],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
     ],
   },
