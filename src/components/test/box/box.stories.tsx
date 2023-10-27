@@ -29,13 +29,13 @@ export const Grid: Story = {
   render: () => {
     return (
       <ThemeProvider>
-        <Box rows={6} cols={12} styles={
+        <Box styles={
           {
             height: "300px",
             width: "600px",
           }
-        } className="w-80 h-64">
-          <Box rowStart={2} rowEnd={4} colStart={2} colEnd={4}/>
+        } className="w-80 h-64 grid-rows-6 grid-cols-12">
+          <Box className="col-start-2 col-end-4 row-start-2 row-end-4"/>
         </Box>
       </ThemeProvider>
     );

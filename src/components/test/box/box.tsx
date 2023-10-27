@@ -44,12 +44,6 @@ export const Box: FunctionComponent<BoxProps> = function Box(props) {
 
   const boxClasses = [
     ...classes,
-    `grid-rows-${rows}`,
-    `grid-cols-${cols}`,
-    `col-start-${colStart}`,
-    `col-end-${colEnd}`,
-    `row-start-${rowStart}`,
-    `row-end-${rowEnd}`,
   ];
 
   const divProps = true ? { className: `${boxClasses.join(" ")} ${className}` } : { style: boxStyle };
