@@ -3426,6 +3426,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/addon-styling-webpack@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "@storybook/addon-styling-webpack@npm:0.0.5"
+  dependencies:
+    "@storybook/node-logger": "npm:^7.0.12"
+  peerDependencies:
+    webpack: ^5.0.0
+  checksum: 3a67c02d35d91b728a80528c728e7451b4c5fb4799b400d99ed0e862dff2c6890632542f75c91d3fb486d60d5a5552506ea4dcf909567834ef1faf11a0e7d72c
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-toolbars@npm:7.5.1":
   version: 7.5.1
   resolution: "@storybook/addon-toolbars@npm:7.5.1"
@@ -3924,7 +3935,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/node-logger@npm:7.5.1":
+"@storybook/node-logger@npm:7.5.1, @storybook/node-logger@npm:^7.0.12":
   version: 7.5.1
   resolution: "@storybook/node-logger@npm:7.5.1"
   checksum: 367d3c7f29a4e7bfddf868872571c60262fd0564fe45a88eed07b4b05d2ec12ab033e238ee143fdd9925f6265914dd7853701c256143ced6d066987a203658f9
@@ -4850,6 +4861,15 @@ __metadata:
   version: 18.18.6
   resolution: "@types/node@npm:18.18.6"
   checksum: ba8b71c724c4c9b1908faf09be1aa062790ef4194f956f6c7ae9791f8d2c1d123635695e41c3c8326223d2262bae2b3b5c8774c7a6c5885a98437b6fb04a2f0c
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^20.8.9":
+  version: 20.8.9
+  resolution: "@types/node@npm:20.8.9"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 71e0023342272e63c47f3fab6082bd6c89d0b0c4262a1c2d0d52458560077f5c28ef5cfe704306eac43fc2e5111bef4e1cdbf08f565650520fad5e54005a8836
   languageName: node
   linkType: hard
 
@@ -7156,6 +7176,7 @@ __metadata:
     "@storybook/addon-links": "npm:^7.5.0"
     "@storybook/addon-mdx-gfm": "npm:^7.5.0"
     "@storybook/addon-onboarding": "npm:^1.0.8"
+    "@storybook/addon-styling-webpack": "npm:^0.0.5"
     "@storybook/blocks": "npm:^7.5.0"
     "@storybook/cli": "npm:^7.5.0"
     "@storybook/react": "npm:^7.5.0"
@@ -7168,6 +7189,7 @@ __metadata:
     "@types/express": "npm:^4.17.19"
     "@types/html-webpack-plugin": "npm:^3.2.7"
     "@types/jest": "npm:^29.5.5"
+    "@types/node": "npm:^20.8.9"
     "@types/react": "npm:^18.2.28"
     "@types/react-dom": "npm:^18.2.13"
     "@types/superagent": "npm:^4.1.19"
@@ -15886,6 +15908,13 @@ __metadata:
   version: 5.25.3
   resolution: "undici-types@npm:5.25.3"
   checksum: 9a57f2dd6fecb2d0f7d9b86aa6f417609a0ffc73247a95aa25c078cf36cbbfe6c164b63b8dace7ad01126e6510f284c185b69c78356bb1d6b279f195acffcaf4
+  languageName: node
+  linkType: hard
+
+"undici-types@npm:~5.26.4":
+  version: 5.26.5
+  resolution: "undici-types@npm:5.26.5"
+  checksum: 0097779d94bc0fd26f0418b3a05472410408877279141ded2bd449167be1aed7ea5b76f756562cb3586a07f251b90799bab22d9019ceba49c037c76445f7cddd
   languageName: node
   linkType: hard
 

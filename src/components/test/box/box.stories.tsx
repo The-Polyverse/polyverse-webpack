@@ -21,7 +21,7 @@ export const Default: Story = {
           height: "20px",
           width: "20px"
         }
-      }/></ThemeProvider>);
+      } className="w-5 h-5"/></ThemeProvider>);
   }
 };
 
@@ -34,7 +34,7 @@ export const Grid: Story = {
             height: "300px",
             width: "600px",
           }
-        }>
+        } className="w-80 h-64">
           <Box rowStart={2} rowEnd={4} colStart={2} colEnd={4}/>
         </Box>
       </ThemeProvider>

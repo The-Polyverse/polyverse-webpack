@@ -18,11 +18,23 @@ const wireframeTheme: ThemeContextType = {
   box: {
     type: "styles",
     value: {
+      display: "grid",
       border: "1px solid black",
       backgroundColor: "white",
       position: "relative", // To position the X
     }
-  }
+  },
+  box2: {
+    type: "classes",
+    value: [
+      "grid",
+      "border",
+      "border-black",
+      "border-solid",
+      "bg-white",
+      "relative",
+    ],
+  },
 };
 
 export const ThemeProvider = function ThemeProvider({children} : {

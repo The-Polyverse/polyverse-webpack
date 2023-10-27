@@ -9,7 +9,7 @@ export function getStyling(themeComponent : {
 }) {
   switch (themeComponent.type) {
     case "classes":
-      return { className: themeComponent.value };
+      return { classes: themeComponent.value };
     case "styles":
       return { style: themeComponent.value };
     default:
