@@ -81,7 +81,7 @@ function getRemainingProps(props: any, designTokens: DesignToken[]) {
 export const Atom = forwardRef(function Atom({ type = 'div', children, ...props }: AtomProps, ref: LegacyRef<HTMLElement>) {
   const designTokens = extractDesignTokens(props);
   const classes = mapDesignTokensToClasses(designTokens, type);
-  const className = `${defaultDesignTokenClassMap[type] || ''} ${classes.join(' ')}`.trim();
+  const className = `${props.className} ${defaultDesignTokenClassMap[type] || ''} ${classes.join(' ')}`.trim();
   const filteredProps = getRemainingProps(props, designTokens);
 
   console.log('Atom', { type, children, props, designTokens, classes, className, filteredProps });
