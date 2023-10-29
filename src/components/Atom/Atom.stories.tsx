@@ -39,3 +39,27 @@ export const Secondary: Story = {
     return <Atom secondary>Atom</Atom>;
   },
 };
+
+export const Button: Story = {
+  render: () => {
+    return <Atom type="button">Atom</Atom>;
+  },
+};
+
+export const ButtonPrimary: Story = {
+  render: () => {
+    return <Atom type="button" primary>Atom</Atom>;
+  },
+};
+
+export const ButtonSecondary: Story = {
+  render: () => {
+    return <Atom type="button" secondary>Atom</Atom>;
+  },
+};
+
+export const Link: Story = {
+  render: () => {
+    return <Atom type="a" href="#">Atom</Atom>;
+  },
+};

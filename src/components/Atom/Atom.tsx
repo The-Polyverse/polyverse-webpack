@@ -3,6 +3,11 @@ import React, { LegacyRef, createElement, forwardRef } from 'react';
 type DesignToken = 'primary'
                   | 'secondary';
 
+const designTokens: DesignToken[] = [
+  'primary',
+  'secondary',
+];
+
 type DesignTokenProps = {
   [K in DesignToken]?: boolean;
 }
@@ -10,14 +15,7 @@ type DesignTokenProps = {
 export type AtomProps = {
   type?: string;
   children?: React.ReactNode;
-} & DesignTokenProps;
-
-/**
- * Extracts the design token props from the given props object.
- */
-function extractDesignTokens(props: DesignTokenProps): DesignToken[] {
-  return Object.keys(props).filter((key) => props[key as DesignToken]) as DesignToken[];
-}
+} & DesignTokenProps & React.HTMLProps<HTMLElement>
 
 type DesignTokenClassMap = {
   [K in string]: {
@@ -25,18 +23,53 @@ type DesignTokenClassMap = {
   };
 };
 
+type DefaultDesignTokenClassMap = {
+  [K in string]: string;
+};
+
 const designTokenClassMap: DesignTokenClassMap = {
   div: {
     primary: 'bg-primary',
     secondary: 'bg-secondary',
   },
+  button: {
+    primary: 'btn-primary',
+    secondary: 'btn-secondary',
+  },
 };
+
+const defaultDesignTokenClassMap: DefaultDesignTokenClassMap = {
+  div: '',
+  button: 'btn',
+};
+
+/**
+ * Extracts the design token props from the given props object.
+ */
+function extractDesignTokens(props: DesignTokenProps): DesignToken[] {
+  return Object.keys(props).filter((key: string) => designTokens.includes(key)) as DesignToken[];
+}
 
 /**
  * Maps the given design tokens to the corresponding tailwind classes.
  */
 function mapDesignTokensToClasses(tokens: DesignToken[], type: string): string[] {
-  return tokens.map((token) => designTokenClassMap[type][token]);
+  return tokens.filter(token => designTokenClassMap[type])
+                .map((token) => designTokenClassMap[type][token]);
+}
+
+/**
+ * Returns the remaining props that are not design tokens.
+ */
+function getRemainingProps(props: any, designTokens: DesignToken[]) {
+  const remainingProps = Object.keys(props).filter((prop: any) => !designTokens.includes(prop as DesignToken));
+  const filteredPropValues = remainingProps.map((prop: string) => (props as any)[prop]);
+  const filteredProps = remainingProps.reduce((acc: any, prop: string, index: number) => {
+    acc[prop] = filteredPropValues[index];
+    return acc;
+  }, {});
+
+  return filteredProps;
 }
 
 /**
@@ -45,10 +78,14 @@ function mapDesignTokensToClasses(tokens: DesignToken[], type: string): string[]
  * mapping its given boolean design token attributes into the corresponding tailwind
  * classes.
  */
-export const Atom = forwardRef(function Atom({type = 'div', children, ...props}: AtomProps, ref: LegacyRef<HTMLDivElement>) {
+export const Atom = forwardRef(function Atom({type = 'div', children, ...props}: AtomProps, ref: LegacyRef<HTMLElement>) {
   const designTokens = extractDesignTokens(props);
   const classes = mapDesignTokensToClasses(designTokens, type);
-  const className = classes.join(' ');
+  const className = `${defaultDesignTokenClassMap[type] || ''} ${classes.join(' ')}`.trim();
+  const filteredProps = getRemainingProps(props, designTokens);
+
+  console.log('Atom', {type, children, props, designTokens, classes, className, filteredProps});
   
-  return createElement(type, {ref, className}, children);
+  return createElement(type, {ref, ...(className.length > 0 ? {className} : {}), ...filteredProps}, children);
 });
+
