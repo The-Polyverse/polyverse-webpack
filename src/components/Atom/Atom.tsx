@@ -1,12 +1,12 @@
 import React, { LegacyRef, createElement, forwardRef } from 'react';
 
 type DesignToken = 'primary'
-                  | 'secondary';
+  | 'secondary';
 
-const designTokens: DesignToken[] = [
+const designTokens: Set<DesignToken> = new Set([
   'primary',
   'secondary',
-];
+]);
 
 type DesignTokenProps = {
   [K in DesignToken]?: boolean;
@@ -47,7 +47,7 @@ const defaultDesignTokenClassMap: DefaultDesignTokenClassMap = {
  * Extracts the design token props from the given props object.
  */
 function extractDesignTokens(props: DesignTokenProps): DesignToken[] {
-  return Object.keys(props).filter((key: string) => designTokens.includes(key)) as DesignToken[];
+  return Object.keys(props).filter((key): key is DesignToken => designTokens.has(key as DesignToken));
 }
 
 /**
@@ -55,7 +55,7 @@ function extractDesignTokens(props: DesignTokenProps): DesignToken[] {
  */
 function mapDesignTokensToClasses(tokens: DesignToken[], type: string): string[] {
   return tokens.filter(token => designTokenClassMap[type])
-                .map((token) => designTokenClassMap[type][token]);
+    .map((token) => designTokenClassMap[type][token]);
 }
 
 /**
@@ -78,14 +78,14 @@ function getRemainingProps(props: any, designTokens: DesignToken[]) {
  * mapping its given boolean design token attributes into the corresponding tailwind
  * classes.
  */
-export const Atom = forwardRef(function Atom({type = 'div', children, ...props}: AtomProps, ref: LegacyRef<HTMLElement>) {
+export const Atom = forwardRef(function Atom({ type = 'div', children, ...props }: AtomProps, ref: LegacyRef<HTMLElement>) {
   const designTokens = extractDesignTokens(props);
   const classes = mapDesignTokensToClasses(designTokens, type);
   const className = `${defaultDesignTokenClassMap[type] || ''} ${classes.join(' ')}`.trim();
   const filteredProps = getRemainingProps(props, designTokens);
 
-  console.log('Atom', {type, children, props, designTokens, classes, className, filteredProps});
-  
-  return createElement(type, {ref, ...(className.length > 0 ? {className} : {}), ...filteredProps}, children);
+  console.log('Atom', { type, children, props, designTokens, classes, className, filteredProps });
+
+  return createElement(type, { ref, ...(className.length > 0 ? { className } : {}), ...filteredProps }, children);
 });
 
