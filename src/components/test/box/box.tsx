@@ -32,18 +32,18 @@ export const Box: FunctionComponent<BoxProps> = function Box(props) {
   const {classes} = getStyling(theme.box2);
 
   const boxStyle = {
-    gridTemplateRows: `repeat(${rows}, 1fr)`,
-    gridTemplateColumns: `repeat(${cols}, 1fr)`,
-    gridColumnStart: colStart,
-    gridColumnEnd: colEnd,
-    gridRowStart: rowStart,
-    gridRowEnd: rowEnd,
     ...styles,
     ...style
   };
 
   const boxClasses = [
     ...classes,
+    `grid-rows-${rows}`,
+    `grid-cols-${cols}`,
+    `col-start-${colStart}`,
+    `col-end-${colEnd}`,
+    `row-start-${rowStart}`,
+    `row-end-${rowEnd}`,
   ];
 
   const divProps = true ? { className: `${boxClasses.join(" ")} ${className}` } : { style: boxStyle };
