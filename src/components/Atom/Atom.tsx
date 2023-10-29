@@ -3,7 +3,7 @@ import React, { LegacyRef, createElement, forwardRef } from 'react';
 type DesignToken = 'primary'
   | 'secondary';
 
-const designTokens: Set<DesignToken> = new Set([
+const designTokens = new Set<DesignToken>([
   'primary',
   'secondary',
 ]);
@@ -54,15 +54,16 @@ function extractDesignTokens(props: DesignTokenProps): DesignToken[] {
  * Maps the given design tokens to the corresponding tailwind classes.
  */
 function mapDesignTokensToClasses(tokens: DesignToken[], type: string): string[] {
-  return tokens.filter(token => designTokenClassMap[type])
-    .map((token) => designTokenClassMap[type][token]);
+  return designTokenClassMap[type] !== undefined
+          ? tokens.map((token) => designTokenClassMap[type][token])
+          : [];
 }
 
 /**
  * Returns the remaining props that are not design tokens.
  */
 function getRemainingProps(props: any, designTokens: DesignToken[]) {
-  const remainingProps = Object.keys(props).filter((prop): prop is DesignToken => !designTokens.has(prop as DesignToken));
+  const remainingProps = Object.keys(props).filter((prop): prop is DesignToken => !designTokens.includes(prop as DesignToken));
   const filteredPropValues = remainingProps.map((prop: string) => (props as any)[prop]);
   const filteredProps = remainingProps.reduce((acc: any, prop: string, index: number) => {
     acc[prop] = filteredPropValues[index];
@@ -81,7 +82,7 @@ function getRemainingProps(props: any, designTokens: DesignToken[]) {
 export const Atom = forwardRef(function Atom({ type = 'div', children, ...props }: AtomProps, ref: LegacyRef<HTMLElement>) {
   const designTokens = extractDesignTokens(props);
   const classes = mapDesignTokensToClasses(designTokens, type);
-  const className = `${props.className} ${defaultDesignTokenClassMap[type]} ${classes.join(' ')}`.trim();
+  const className = `${props.className || ''} ${defaultDesignTokenClassMap[type] || ''} ${classes.join(' ')}`.trim();
   const filteredProps = getRemainingProps(props, designTokens);
 
   console.log('Atom', { type, children, props, designTokens, classes, className, filteredProps });
