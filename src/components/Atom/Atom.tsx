@@ -62,7 +62,7 @@ function mapDesignTokensToClasses(tokens: DesignToken[], type: string): string[]
  * Returns the remaining props that are not design tokens.
  */
 function getRemainingProps(props: any, designTokens: DesignToken[]) {
-  const remainingProps = Object.keys(props).filter((prop: any) => !designTokens.includes(prop as DesignToken));
+  const remainingProps = Object.keys(props).filter((prop): prop is DesignToken => !designTokens.has(prop as DesignToken));
   const filteredPropValues = remainingProps.map((prop: string) => (props as any)[prop]);
   const filteredProps = remainingProps.reduce((acc: any, prop: string, index: number) => {
     acc[prop] = filteredPropValues[index];
