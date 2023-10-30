@@ -1,7 +1,23 @@
 import React, { LegacyRef, createElement, forwardRef } from 'react';
 
-type DesignToken = 'primary'
-  | 'secondary';
+type DesignToken = 
+    // Colours
+    'primary'
+  | 'secondary'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'info'
+  | 'light'
+  | 'dark'
+  | 'outline'
+    // Size
+  | 'large'
+  | 'small'
+    // State
+  | 'disabled'
+  | 'active'
+  ;
 
 const designTokens = new Set<DesignToken>([
   'primary',
